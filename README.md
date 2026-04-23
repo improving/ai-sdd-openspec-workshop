@@ -27,7 +27,7 @@ A minimal **Bug Tracker** web application with:
 
 1. **[Node.js](https://nodejs.org/) v18+** installed
 2. **[Windsurf](https://windsurf.com/)** (or another AI-enabled IDE)
-3. **Clone the repository**:
+3. **Clone the Workshop repository**:
    ```powershell
    git clone https://github.com/improving/ai-sdd-openspec-workshop
    ```
