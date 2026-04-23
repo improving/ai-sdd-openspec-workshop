@@ -7,6 +7,7 @@ Tech stack:
 - Backend: Node.js + Express + TypeScript
 - Storage: in-memory only (no database)
 - Tests: Vitest (and Supertest for API tests if needed)
+- Runtime: The app should be scaffolded to run frontend and backend together with a single command (npm run dev)
 
 TDD is REQUIRED (non-negotiable):
 - Follow Red–Green–Refactor.
