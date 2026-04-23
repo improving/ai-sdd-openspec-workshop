@@ -1,18 +1,45 @@
-# Lab Instructions
+# AI Spec-Driven Development Workshop
+
+A hands-on workshop demonstrating **Spec-Driven Development (SDD)** using [OpenSpec](https://www.npmjs.com/package/openspec) and an AI-enabled IDE (Windsurf). Participants build a Bug Tracker app feature-by-feature using a propose → review → apply → verify → archive cycle.
+
+---
+
+## What You'll Build
+
+A minimal **Bug Tracker** web application with:
+
+- **Create Bug** — form with title, description, and optional severity
+- **List Bugs** — sortable table showing all bugs newest-first
+- **Triage Bug** — set severity and transition status from `New` → `Triaged`
+
+### Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | React + TypeScript + Vite + Tailwind CSS |
+| Backend | Node.js + Express + TypeScript |
+| Storage | In-memory (no database) |
+| Tests | Vitest + React Testing Library + Supertest |
+
+---
 
 ## Prerequisites
 
-Before the lab begins, make sure you have the following ready:
-
-1. **Clone the workshop repository** to your local machine.
-   - https://github.com/improving/ai-sdd-openspec-workshop
-2. **Open the repo** in Windsurf (or your AI-enabled IDE).
-3. **Install the OpenSpec CLI** globally if you have not already:
+1. **[Node.js](https://nodejs.org/) v18+** installed
+2. **[Windsurf](https://windsurf.com/)** (or another AI-enabled IDE)
+3. **Clone the repository**:
+   ```powershell
+   git clone https://github.com/improving/ai-sdd-openspec-workshop
+   ```
+4. **Install the OpenSpec CLI** globally:
    ```powershell
    npm install -g openspec
    ```
-4. Familiarize yourself with the prompt in the repo root:
-   - `initial-prompt.md` — the product requirements for a simple Bug Tracker app.
+5. Open `initial-prompt.md` — the product requirements for the Bug Tracker app.
+
+---
+
+## Workshop Lab
 
 ---
 
@@ -176,3 +203,56 @@ After completing the lab, discuss these questions with your group or the class:
 - Would you have caught the same edge cases without the Given/When/Then format?
 - Where do you see OpenSpec fitting into your real-world workflow?
 - What are the **limits** of AI-driven spec-to-code generation?
+
+---
+
+## Project Structure
+
+```
+ai-sdd-openspec-workshop/
+├── packages/
+│   ├── backend/          # Express API
+│   │   └── src/
+│   │       ├── types.ts
+│   │       ├── bugStore.ts
+│   │       ├── bugs.routes.ts
+│   │       └── app.ts
+│   └── frontend/         # React + Vite app
+│       └── src/
+│           ├── App.tsx
+│           └── components/
+├── openspec/             # OpenSpec artifacts (generated)
+│   ├── changes/          # Active and archived changes
+│   └── specs/            # Canonical specs per feature
+├── initial-prompt.md     # Product requirements
+└── README.md
+```
+
+---
+
+## OpenSpec Slash Commands
+
+| Command | Purpose |
+|---|---|
+| `/opsx-propose` | Generate proposal, design, spec, and task artifacts for a new change |
+| `/opsx-apply` | Implement a change following its task list (TDD) |
+| `/opsx-verify` | Verify implementation matches the change artifacts |
+| `/opsx-archive` | Archive completed change artifacts |
+
+---
+
+## Key Concepts
+
+- **Spec-Driven Development** — write acceptance criteria (Given/When/Then) before implementation
+- **TDD** — tests are written first (Red), then made to pass (Green), then refined (Refactor)
+- **AI as pair programmer** — Cascade implements each task list step, guided by the spec
+
+---
+
+## API Reference
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/bugs` | Returns all bugs sorted newest-first |
+| `POST` | `/api/bugs` | Creates a new bug |
+| `PATCH` | `/api/bugs/:id/triage` | Triages a bug (sets severity, transitions status) |

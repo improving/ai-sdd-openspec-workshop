@@ -14,7 +14,7 @@ TDD is REQUIRED (non-negotiable):
 - For every behavior in the specs, write tests FIRST (failing), then implement.
 - The task list must explicitly sequence: tests → implementation → refactor.
 
-Include a comprehensive README.md in the root of the project.
+Include a comprehensive LAB-README.md file in the root of the project that explains how to run the application and how to run the tests.
 
 Features (minimal but complete):
 1) Create Bug
