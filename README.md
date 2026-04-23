@@ -1,6 +1,6 @@
 # AI Spec-Driven Development Workshop
 
-A hands-on workshop demonstrating **Spec-Driven Development (SDD)** using [OpenSpec](https://www.npmjs.com/package/openspec) and an AI-enabled IDE (Windsurf). Participants build a Bug Tracker app feature-by-feature using a propose → review → apply → verify → archive cycle.
+A hands-on workshop demonstrating **Spec-Driven Development (SDD)** using [OpenSpec](https://github.com/Fission-AI/OpenSpec) and an AI-enabled IDE (Windsurf). Participants build a Bug Tracker app feature-by-feature using a propose → review → apply → verify → archive cycle.
 
 ---
 
@@ -33,7 +33,7 @@ A minimal **Bug Tracker** web application with:
    ```
 4. **Install the OpenSpec CLI** globally:
    ```powershell
-   npm install -g openspec
+   npm install -g @fission-ai/openspec@latest
    ```
 5. Open `initial-prompt.md` — the product requirements for the Bug Tracker app.
 
