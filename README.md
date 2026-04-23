@@ -199,60 +199,30 @@ Open the browser and demonstrate the triage workflow end-to-end.
 
 After completing the lab, discuss these questions with your group or the class:
 
+- Vibe Coding is powerful but important context is lost in chat conversations.
+- How did the OpenSpec workflow feel different from traditional coding? From Vibe Coding?
 - How did having a **spec before implementation** change the way code was written?
-- Would you have caught the same edge cases without the Given/When/Then format?
 - Where do you see OpenSpec fitting into your real-world workflow?
-- What are the **limits** of AI-driven spec-to-code generation?
-
----
-
-## Project Structure
-
-```
-ai-sdd-openspec-workshop/
-├── packages/
-│   ├── backend/          # Express API
-│   │   └── src/
-│   │       ├── types.ts
-│   │       ├── bugStore.ts
-│   │       ├── bugs.routes.ts
-│   │       └── app.ts
-│   └── frontend/         # React + Vite app
-│       └── src/
-│           ├── App.tsx
-│           └── components/
-├── openspec/             # OpenSpec artifacts (generated)
-│   ├── changes/          # Active and archived changes
-│   └── specs/            # Canonical specs per feature
-├── initial-prompt.md     # Product requirements
-└── README.md
-```
 
 ---
 
 ## OpenSpec Slash Commands
 
+### Core Commands
 | Command | Purpose |
 |---|---|
-| `/opsx-propose` | Generate proposal, design, spec, and task artifacts for a new change |
-| `/opsx-apply` | Implement a change following its task list (TDD) |
-| `/opsx-verify` | Verify implementation matches the change artifacts |
-| `/opsx-archive` | Archive completed change artifacts |
+| `/opsx:explore` | Think through ideas before committing to a change |
+| `/opsx:propose` | Create a change and generate planning artifacts in one step |
+| `/opsx:apply` | Implement tasks from the change |
+| `/opsx:archive` | Archive a completed change |
 
----
-
-## Key Concepts
-
-- **Spec-Driven Development** — write acceptance criteria (Given/When/Then) before implementation
-- **TDD** — tests are written first (Red), then made to pass (Green), then refined (Refactor)
-- **AI as pair programmer** — Cascade implements each task list step, guided by the spec
-
----
-
-## API Reference
-
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/bugs` | Returns all bugs sorted newest-first |
-| `POST` | `/api/bugs` | Creates a new bug |
-| `PATCH` | `/api/bugs/:id/triage` | Triages a bug (sets severity, transitions status) |
+### Expanded Workflow Commands (custom workflow selection)
+| Command | Purpose |
+|---|---|
+| `/opsx:new` | Start a new change scaffold |
+| `/opsx:continue` | Create the next artifact based on dependencies |
+| `/opsx:ff` | Fast-forward: create all planning artifacts at once |
+| `/opsx:verify` | Validate implementation matches artifacts |
+| `/opsx:sync` | Merge delta specs into main specs |
+| `/opsx:bulk-archive` | Archive multiple changes at once |
+| `/opsx:onboard` | Guided tutorial through the complete workflow |
