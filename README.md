@@ -113,7 +113,7 @@ Cascade will implement the feature — writing failing tests first, then making 
 When the feature is complete and verified, archive it in Cascade:
 
 ```
-/opsx-archive create-bug
+/opsx-archive create-bug, include greenfield scaffolding
 ```
 
 This moves the artifacts to `openspec/changes/archive/` to keep the workspace clean.
