@@ -62,7 +62,7 @@ This scaffolds the `openspec/` directory structure and skills/workflows used by 
 In the Cascade chat panel, type the following slash command:
 
 ```
-/opsx-propose @initial-prompt.md create-bug feature only
+/opsx-propose @initial-prompt.md create-bug feature only, include greenfield scaffolding
 ```
 
 Cascade will generate the following artifacts inside `openspec/changes/create-bug/`:
@@ -113,7 +113,7 @@ Cascade will implement the feature — writing failing tests first, then making 
 When the feature is complete and verified, archive it in Cascade:
 
 ```
-/opsx-archive create-bug, include greenfield scaffolding
+/opsx-archive create-bug
 ```
 
 This moves the artifacts to `openspec/changes/archive/` to keep the workspace clean.
