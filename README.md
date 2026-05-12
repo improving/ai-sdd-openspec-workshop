@@ -57,6 +57,27 @@ openspec init
 
 This scaffolds the `openspec/` directory structure and skills/workflows used by all subsequent commands.
 
+## Step 1.5 - Configure config.yaml
+
+Open the `openspec/config.yaml` file and update the `context` section to include the following:
+
+```yaml
+context: |
+  Domain: Bug Tracker web application — a demo POC for a workshop teaching Spec-Driven Development (SDD) using OpenSpec.
+
+  Tech stack:
+  - Frontend: React + TypeScript (Vite) + Tailwind CSS — clean, modern, professional design
+  - Backend: Node.js + Express + TypeScript
+  - Storage: in-memory only (no database)
+  - Tests: Vitest (and Supertest for API tests)
+  - Dev runtime: frontend and backend run together via a single `npm run dev` command
+
+  TDD discipline (non-negotiable):
+  - Follow Red–Green–Refactor strictly.
+  - For every behavior in the specs, write failing tests FIRST, then implement.
+  - Task lists must sequence: tests → implementation → refactor.
+```
+
 ### Step 2 — Propose the "Create Bug" Feature
 
 In the Cascade chat panel, type the following slash command:
