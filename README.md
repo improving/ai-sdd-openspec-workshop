@@ -57,7 +57,7 @@ openspec init
 
 This scaffolds the `openspec/` directory structure and skills/workflows used by all subsequent commands.
 
-## Step 1.5 - Configure config.yaml
+### Step 1.5 - Configure config.yaml
 
 Open the `openspec/config.yaml` file and update the `context` section to include the following:
 
