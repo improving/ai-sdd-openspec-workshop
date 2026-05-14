@@ -80,6 +80,8 @@ context: |
 
 ### Step 2 — Propose the "Create Bug" Feature
 
+**Open a new Windsurf Cascade Session** to start with a fresh context window.
+
 In the Cascade chat panel, type the following slash command:
 
 ```
@@ -107,6 +109,8 @@ Request any changes from Cascade before moving on.
 
 ### Step 4 — Apply the Change
 
+**Open a new Windsurf Cascade Session** to start with a fresh context window.
+
 Once satisfied with the artifacts, run in Cascade:
 
 ```
@@ -131,6 +135,8 @@ Cascade will implement the feature — writing failing tests first, then making 
 
 ### Step 6 — Archive the Change
 
+**Open a new Windsurf Cascade Session** to start with a fresh context window.
+
 When the feature is complete and verified, archive it in Cascade:
 
 ```
@@ -149,6 +155,8 @@ Split into small groups (2–3 people). Each group will complete the remaining f
 
 **Step 1 — Propose**
 
+**Open a new Windsurf Cascade Session** to start with a fresh context window.
+
 ```
 /opsx-propose @initial-prompt.md list-bugs feature only
 ```
@@ -159,6 +167,8 @@ Split into small groups (2–3 people). Each group will complete the remaining f
 - Severity shown as "Untriaged" when not set.
 
 **Step 3 — Apply**
+
+**Open a new Windsurf Cascade Session** to start with a fresh context window.
 
 ```
 /opsx-apply list-bugs
@@ -175,6 +185,8 @@ Open the browser and confirm the bug list renders correctly.
 
 **Step 5 — Archive**
 
+**Open a new Windsurf Cascade Session** to start with a fresh context window.
+
 ```
 /opsx-archive list-bugs
 ```
@@ -185,6 +197,8 @@ Open the browser and confirm the bug list renders correctly.
 
 **Step 1 — Propose**
 
+**Open a new Windsurf Cascade Session** to start with a fresh context window.
+
 ```
 /opsx-propose @initial-prompt.md triage-bug feature only
 ```
@@ -194,6 +208,8 @@ Open the browser and confirm the bug list renders correctly.
 - Once `Triaged`, Severity cannot be changed (error returned).
 
 **Step 3 — Apply**
+
+**Open a new Windsurf Cascade Session** to start with a fresh context window.
 
 ```
 /opsx-apply triage-bug
@@ -209,6 +225,8 @@ npm run dev
 Open the browser and demonstrate the triage workflow end-to-end.
 
 **Step 5 — Archive**
+
+**Open a new Windsurf Cascade Session** to start with a fresh context window.
 
 ```
 /opsx-archive triage-bug
@@ -247,3 +265,16 @@ After completing the lab, discuss these questions with your group or the class:
 | `/opsx:sync` | Merge delta specs into main specs |
 | `/opsx:bulk-archive` | Archive multiple changes at once |
 | `/opsx:onboard` | Guided tutorial through the complete workflow |
+
+---
+
+## Best Practice: Fresh Cascade Sessions for Each Agent Command
+
+It is recommended to **open a new Windsurf Cascade Session before running each agent command** (`/opsx-propose`, `/opsx-apply`, `/opsx-archive`, etc.). Here's why:
+
+- **Context Window Management**: Each Cascade session starts with a clean context window, preventing token accumulation from previous conversations that could limit the AI's ability to reason about the current task.
+- **Reduced Hallucination**: A fresh context reduces the risk of the AI referencing or conflating details from prior features or changes.
+- **Clearer Focus**: Each session is dedicated to a single feature or change, making it easier to track what the AI is working on and verify correctness.
+- **Better Artifact Quality**: With a focused context, the generated specs, designs, and task lists are more precise and less likely to contain cross-feature contamination.
+
+This practice is especially important in a workshop setting where multiple features are being developed in sequence.

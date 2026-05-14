@@ -21,11 +21,11 @@ Features (minimal but complete):
 - Fields: Title (required, max 100 chars), Description (optional), Severity (P1/P2/P3 optional at creation), Status (defaults to “New”), CreatedAt.
 - Validation: if Title missing or >100 chars, show error and do not create.
 
-1) List Bugs
+2) List Bugs
 - Show all bugs sorted newest-first.
 - Each row shows Title (truncate with “…” after 50 chars), Severity (or “Untriaged”), Status, CreatedAt.
 
-1) Triage Bug (state rule)
+3) Triage Bug (state rule)
 - Triage sets Severity (P1/P2/P3) and transitions Status from “New” → “Triaged”.
 - Once “Triaged”, Severity cannot be changed again (reject with clear error).
 
