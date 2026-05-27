@@ -278,3 +278,25 @@ It is recommended to **open a new Windsurf Cascade Session before running each a
 - **Better Artifact Quality**: With a focused context, the generated specs, designs, and task lists are more precise and less likely to contain cross-feature contamination.
 
 This practice is especially important in a workshop setting where multiple features are being developed in sequence.
+
+---
+
+## Tests-First vs. Tests-Second in Agentic SDD
+
+A common objection to TDD in agentic development: *"The agent writes both the tests and the code, so why not let it write the code first and the tests second? It uses fewer tokens."*
+
+**Tests-Second (the pushback)**
+- Slightly lower token cost on the happy path.
+- Tests are written with the implementation in view — they describe what the code *does*, not what the spec *demanded*.
+- The agent has no objective oracle during implementation, so drift from the spec is harder to detect.
+- One round of rework wipes out any token savings.
+
+**Tests-First (recommended)**
+- The first artifact produced is a machine-checkable encoding of the spec — intent drift is caught in seconds.
+- Gives the agent a tight feedback loop: write → run → observe → fix, terminating cleanly when tests go green.
+- Slightly higher best-case token cost, dramatically lower worst-case cost.
+- Optimizes for **enforceable intent**, not generation efficiency.
+
+**Key Takeaway**
+
+> *Tests-second optimizes for tokens. Tests-first optimizes for intent. Pick which one you want to be wrong about in production. The agent will happily write tests that pass — only tests written before the code can prove the code did what the spec asked.*
