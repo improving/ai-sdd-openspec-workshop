@@ -1,6 +1,6 @@
 # AI Spec-Driven Development Workshop
 
-A hands-on workshop demonstrating **Spec-Driven Development (SDD)** using [OpenSpec](https://github.com/Fission-AI/OpenSpec) and an AI-enabled IDE (Windsurf). Participants build a Bug Tracker app feature-by-feature using a propose → review → apply → verify → archive cycle.
+A hands-on workshop demonstrating **Spec-Driven Development (SDD)** using [OpenSpec](https://github.com/Fission-AI/OpenSpec) and an AI-enabled IDE (Devin). Participants build a Bug Tracker app feature-by-feature using a propose → review → apply → verify → archive cycle.
 
 ---
 
@@ -26,7 +26,7 @@ A minimal **Bug Tracker** web application with:
 ## Prerequisites
 
 1. **[Node.js](https://nodejs.org/) v18+** installed
-2. **[Windsurf](https://windsurf.com/)** (or another AI-enabled IDE)
+2. **[Devin](https://devin.ai/)** (or another AI-enabled IDE)
 3. **Clone the Workshop repository**:
    ```powershell
    git clone https://github.com/improving/ai-sdd-openspec-workshop
@@ -59,28 +59,42 @@ This scaffolds the `openspec/` directory structure and skills/workflows used by 
 
 ### Step 1.5 - Configure config.yaml
 
-Open the `openspec/config.yaml` file and update the `context` section to include the following:
+Open the `openspec/config.yaml` file and replace its contents with the following:
 
 ```yaml
+schema: spec-driven
+
 context: |
   Domain: Bug Tracker web application — a demo POC for a workshop teaching Spec-Driven Development (SDD) using OpenSpec.
 
   Tech stack:
-  - Frontend: React + TypeScript (Vite) + Tailwind CSS — clean, modern, professional design
+  - Frontend: React + TypeScript (Vite) + Tailwind CSS
   - Backend: Node.js + Express + TypeScript
   - Storage: in-memory only (no database)
-  - Tests: Vitest (and Supertest for API tests)
+  - Tests: Vitest + Supertest for API tests
   - Dev runtime: frontend and backend run together via a single `npm run dev` command
 
   TDD discipline (non-negotiable):
   - Follow Red–Green–Refactor strictly.
   - For every behavior in the specs, write failing tests FIRST, then implement.
-  - Task lists must sequence: tests → implementation → refactor.
+
+  Project conventions:
+  - UI: one create form and one list view, minimal Tailwind styling, no extra dependencies.
+  - Tests: backend endpoint tests with Supertest and frontend component tests with React Testing Library; run with `npm run test`.
+
+rules:
+  tasks:
+    - "Group tasks under `## N. Group Name` headings."
+    - "Every task must be a checkbox in the form `- [ ] N.M Task description`."
+    - "Sequence tasks as: write failing tests, implement the behavior, refactor."
+    - "Each task must be small, focused, and reference the relevant spec scenario."
+    - "Task lists must explicitly sequence: tests → implementation → refactor."
+
 ```
 
 ### Step 2 — Propose the "Create Bug" Feature
 
-**Open a new Windsurf Cascade Session** to start with a fresh context window.
+**Open a new Devin Cascade Session** to start with a fresh context window.
 
 In the Cascade chat panel, type the following slash command:
 
@@ -109,7 +123,7 @@ Request any changes from Cascade before moving on.
 
 ### Step 4 — Apply the Change
 
-**Open a new Windsurf Cascade Session** to start with a fresh context window.
+**Open a new Devin Cascade Session** to start with a fresh context window.
 
 Once satisfied with the artifacts, run in Cascade:
 
@@ -135,7 +149,7 @@ Cascade will implement the feature — writing failing tests first, then making 
 
 ### Step 6 — Archive the Change
 
-**Open a new Windsurf Cascade Session** to start with a fresh context window.
+**Open a new Devin Cascade Session** to start with a fresh context window.
 
 When the feature is complete and verified, archive it in Cascade:
 
@@ -155,7 +169,7 @@ Split into small groups (2–3 people). Each group will complete the remaining f
 
 **Step 1 — Propose**
 
-**Open a new Windsurf Cascade Session** to start with a fresh context window.
+**Open a new Devin Cascade Session** to start with a fresh context window.
 
 ```
 /opsx-propose @initial-prompt.md list-bugs feature only
@@ -168,7 +182,7 @@ Split into small groups (2–3 people). Each group will complete the remaining f
 
 **Step 3 — Apply**
 
-**Open a new Windsurf Cascade Session** to start with a fresh context window.
+**Open a new Devin Cascade Session** to start with a fresh context window.
 
 ```
 /opsx-apply list-bugs
@@ -185,7 +199,7 @@ Open the browser and confirm the bug list renders correctly.
 
 **Step 5 — Archive**
 
-**Open a new Windsurf Cascade Session** to start with a fresh context window.
+**Open a new Devin Cascade Session** to start with a fresh context window.
 
 ```
 /opsx-archive list-bugs
@@ -197,7 +211,7 @@ Open the browser and confirm the bug list renders correctly.
 
 **Step 1 — Propose**
 
-**Open a new Windsurf Cascade Session** to start with a fresh context window.
+**Open a new Devin Cascade Session** to start with a fresh context window.
 
 ```
 /opsx-propose @initial-prompt.md triage-bug feature only
@@ -209,7 +223,7 @@ Open the browser and confirm the bug list renders correctly.
 
 **Step 3 — Apply**
 
-**Open a new Windsurf Cascade Session** to start with a fresh context window.
+**Open a new Devin Cascade Session** to start with a fresh context window.
 
 ```
 /opsx-apply triage-bug
@@ -226,7 +240,7 @@ Open the browser and demonstrate the triage workflow end-to-end.
 
 **Step 5 — Archive**
 
-**Open a new Windsurf Cascade Session** to start with a fresh context window.
+**Open a new Devin Cascade Session** to start with a fresh context window.
 
 ```
 /opsx-archive triage-bug
@@ -270,7 +284,7 @@ After completing the lab, discuss these questions with your group or the class:
 
 ## Best Practice: Fresh Cascade Sessions for Each Agent Command
 
-It is recommended to **open a new Windsurf Cascade Session before running each agent command** (`/opsx-propose`, `/opsx-apply`, `/opsx-archive`, etc.). Here's why:
+It is recommended to **open a new Devin Cascade Session before running each agent command** (`/opsx-propose`, `/opsx-apply`, `/opsx-archive`, etc.). Here's why:
 
 - **Context Window Management**: Each Cascade session starts with a clean context window, preventing token accumulation from previous conversations that could limit the AI's ability to reason about the current task.
 - **Reduced Hallucination**: A fresh context reduces the risk of the AI referencing or conflating details from prior features or changes.

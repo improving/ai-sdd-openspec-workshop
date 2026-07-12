@@ -1,35 +1,48 @@
-Create a small “Bug Tracker” web application as a demo POC for a workshop teaching SDD using OpenSpec.
+# Bug Tracker — Product Requirements
 
-Tech stack:
+Create a small “Bug Tracker” web application as a demo POC for a workshop teaching Spec-Driven Development (SDD) using OpenSpec.
+
+## Tech Stack
 - Frontend: React + TypeScript (Vite) + Tailwind CSS
-  - Clean frontend look and feel
-  - Modern, professional design
 - Backend: Node.js + Express + TypeScript
 - Storage: in-memory only (no database)
-- Tests: Vitest (and Supertest for API tests if needed)
-- Runtime: The app should be scaffolded to run frontend and backend together with a single command (npm run dev)
+- Tests: Vitest + Supertest for API tests
+- Runtime: `npm run dev` must start both frontend and backend concurrently
 
-TDD is REQUIRED (non-negotiable):
+## TDD Discipline (non-negotiable)
 - Follow Red–Green–Refactor.
-- For every behavior in the specs, write tests FIRST (failing), then implement.
-- The task list must explicitly sequence: tests → implementation → refactor.
+- For every behavior in the specs, write failing tests FIRST, then implement.
+- Task lists must explicitly sequence: tests → implementation → refactor.
 
-Include a comprehensive LAB-README.md file in the root of the project that explains how to run the application and how to run the tests.
+## Features
 
-Features (minimal but complete):
-1) Create Bug
-- Fields: Title (required, max 100 chars), Description (optional), Severity (P1/P2/P3 optional at creation), Status (defaults to “New”), CreatedAt.
-- Validation: if Title missing or >100 chars, show error and do not create.
+### create-bug
+- Create a new bug with:
+  - Title: required string, max 100 characters
+  - Description: optional string
+  - Severity: optional, one of `P1`, `P2`, `P3`
+  - Status: defaults to `New`
+  - CreatedAt: timestamp set automatically
+- Validation: if Title is missing or exceeds 100 characters, show an error and do not create the bug.
 
-2) List Bugs
-- Show all bugs sorted newest-first.
-- Each row shows Title (truncate with “…” after 50 chars), Severity (or “Untriaged”), Status, CreatedAt.
+### list-bugs
+- Display all bugs sorted newest-first.
+- Each row shows:
+  - Title, truncated to 50 characters with `…` when longer
+  - Severity or `Untriaged` when not set
+  - Status
+  - CreatedAt
 
-3) Triage Bug (state rule)
-- Triage sets Severity (P1/P2/P3) and transitions Status from “New” → “Triaged”.
-- Once “Triaged”, Severity cannot be changed again (reject with clear error).
+### triage-bug
+- Triage sets Severity to one of `P1`, `P2`, `P3` and transitions Status from `New` to `Triaged`.
+- Once a bug is `Triaged`, Severity cannot be changed again; reject such requests with a clear error.
 
-Constraints / non-goals:
-- No auth/roles, no persistence, no edit/delete, minimal UI (one create form + list view).
-- Provide Given/When/Then acceptance criteria with at least 2 edge cases per feature.
-- Include a small ordered task list suitable for a short lab, with tests-first steps for each feature.
+## Constraints and Non-Goals
+- No authentication, roles, persistence, edit, or delete operations.
+- Minimal UI: one create form and one list view.
+- Only the `create-bug` feature should include greenfield scaffolding (frontend, backend, tests, and a root `LAB-README.md`). Subsequent features must build on the existing scaffolding.
+
+## Scope Guidance for the AI
+- The user will request one feature at a time (e.g., `create-bug feature only, include greenfield scaffolding`).
+- Generate the OpenSpec proposal/spec/design/tasks artifacts for only the requested feature.
+- Do not re-scaffold or rewrite `LAB-README.md` unless the user explicitly asks for greenfield scaffolding.
