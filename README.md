@@ -63,6 +63,7 @@ Open the `openspec/config.yaml` file and replace its contents with the following
 
 ```yaml
 schema: spec-driven
+model: SWE 1.7
 
 context: |
   Domain: Bug Tracker web application — a demo POC for a workshop teaching Spec-Driven Development (SDD) using OpenSpec.
@@ -83,15 +84,28 @@ context: |
   - Tests: backend endpoint tests with Supertest and frontend component tests with React Testing Library; run with `npm run test`.
 
 rules:
-  propose:
-    - "If you are running on model SWE 1.7 do not add 'npm run dev' to the task list."
-  tasks:
-    - "Group tasks under `## N. Group Name` headings."
-    - "Every task must be a checkbox in the form `- [ ] N.M Task description`."
-    - "Sequence tasks as: write failing tests, implement the behavior, refactor."
-    - "Each task must be small, focused, and reference the relevant spec scenario."
-    - "Task lists must explicitly sequence: tests → implementation → refactor."
-    - "Check off tasks as you complete them one-by-one or a section at a time."
+  default:
+    propose:
+      - "Do not add 'npm run dev' to the task list."
+    apply:
+      - "Do not start the dev server yourself."
+    archive:
+      - "Verify the spec and implementation are complete and aligned before archiving."
+    tasks:
+      - "Group tasks under `## N. Group Name` headings."
+      - "Every task must be a checkbox in the form `- [ ] N.M Task description`."
+      - "Each task must be small, focused, reference the relevant spec scenario, and sequence: tests → implementation → refactor."
+      - "Check off tasks as you complete them one-by-one or a section at a time."
+  swe-1.7:
+    propose:
+      - "If you are running on model SWE 1.7 do not add 'npm run dev' to the task list."
+    apply:
+      - "SWE 1.7: do not start the dev server yourself."
+      - "SWE 1.7: prefer small, focused diffs; keep each implementation change under ~30 lines when possible."
+    archive:
+      - "SWE 1.7: verify the spec and implementation are complete and aligned before archiving."
+    tasks:
+      - "SWE 1.7: keep tasks concrete and avoid multi-file refactors in a single step."
 
 ```
 
