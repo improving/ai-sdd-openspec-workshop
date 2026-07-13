@@ -83,6 +83,8 @@ context: |
   - Tests: backend endpoint tests with Supertest and frontend component tests with React Testing Library; run with `npm run test`.
 
 rules:
+  propose:
+    - "If you are running on model SWE 1.7 do not add 'npm run dev' to the task list."
   tasks:
     - "Group tasks under `## N. Group Name` headings."
     - "Every task must be a checkbox in the form `- [ ] N.M Task description`."
