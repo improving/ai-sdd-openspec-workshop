@@ -89,6 +89,7 @@ rules:
     - "Sequence tasks as: write failing tests, implement the behavior, refactor."
     - "Each task must be small, focused, and reference the relevant spec scenario."
     - "Task lists must explicitly sequence: tests → implementation → refactor."
+    - "Check off tasks as you complete them one-by-one or a section at a time."
 
 ```
 
