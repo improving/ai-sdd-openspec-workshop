@@ -85,12 +85,6 @@ context: |
 
 rules:
   default:
-    propose:
-      - "Do not add 'npm run dev' to the task list."
-    apply:
-      - "Do not start the dev server yourself."
-    archive:
-      - "Verify the spec and implementation are complete and aligned before archiving."
     tasks:
       - "Group tasks under `## N. Group Name` headings."
       - "Every task must be a checkbox in the form `- [ ] N.M Task description`."
