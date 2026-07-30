@@ -1,6 +1,6 @@
 # AI Spec-Driven Development Workshop
 
-A hands-on workshop demonstrating **Spec-Driven Development (SDD)** using [OpenSpec](https://github.com/Fission-AI/OpenSpec) and an AI-enabled IDE (Devin). Participants build a Bug Tracker app feature-by-feature using a propose → review → apply → verify → archive cycle.
+A hands-on workshop demonstrating **Spec-Driven Development (SDD)** using [OpenSpec](https://github.com/Fission-AI/OpenSpec) and an AI-enabled IDE (Devin Desktop, formerly Windsurf). Participants build a Bug Tracker app feature-by-feature using a propose → review → apply → verify → archive cycle.
 
 ---
 
@@ -26,7 +26,7 @@ A minimal **Bug Tracker** web application with:
 ## Prerequisites
 
 1. **[Node.js](https://nodejs.org/) v18+** installed
-2. **[Devin](https://devin.ai/)** (or another AI-enabled IDE)
+2. **[Devin Desktop](https://devin.ai/)** (formerly Windsurf) — or another AI-enabled IDE
 3. **Clone the Workshop repository**:
    ```powershell
    git clone https://github.com/improving/ai-sdd-openspec-workshop
@@ -55,7 +55,9 @@ In a PowerShell terminal at the repo root, run:
 openspec init
 ```
 
-This scaffolds the `openspec/` directory structure and skills/workflows used by all subsequent commands.
+This scaffolds the `openspec/` directory structure and skills used by all subsequent commands.
+
+> **Note:** OpenSpec's `.devin/workflows/` commands have been deprecated in favor of skill-based slash commands. The legacy `/opsx-*` workflow commands (e.g. `/opsx-propose`, `/opsx-apply`, `/opsx-archive`) no longer work in the Devin chat panel. Use the skill-based commands documented below instead: `/openspec-propose`, `/openspec-apply-change`, `/openspec-archive-change`, etc.
 
 ### Step 1.5 - Configure config.yaml
 
@@ -107,7 +109,7 @@ rules:
 
 The `swe-1.7` rules are specifically tuned for the SWE 1.7 model, which is significantly cheaper than other models. The goal is to add precision and guardrails so the cheaper model stays reliable in this lab:
 
-- **No `npm run dev` in proposals and no `npm run dev` during apply** — prevents the Cascade window from hanging.
+- **No `npm run dev` in proposals and no `npm run dev` during apply** — prevents the Devin Desktop window from hanging.
 - **Small, focused diffs (~30 lines max per change)** — keeps each apply step minimal, reducing the amount of code and reasoning the model must handle at once.
 - **Concrete tasks, no multi-file refactors** — avoids the broad, sweeping rewrites that consume large context windows and can trigger rework.
 - **Verify before archiving** — ensures a single clean completion step rather than repeated back-and-forth corrections.
@@ -116,13 +118,13 @@ The `swe-1.7` rules are specifically tuned for the SWE 1.7 model, which is signi
 
 **Open a new Devin Cascade Session** to start with a fresh context window.
 
-In the Cascade chat panel, type the following slash command:
+In the Devin chat panel, type the following slash command:
 
 ```
-/opsx-propose @initial-prompt.md create-bug feature only, include greenfield scaffolding
+/openspec-propose @initial-prompt.md create-bug feature only, include greenfield scaffolding
 ```
 
-Cascade will generate the following artifacts inside `openspec/changes/create-bug/`:
+Devin will generate the following artifacts inside `openspec/changes/create-bug/`:
 
 | File | Purpose |
 |---|---|
@@ -139,7 +141,7 @@ Open and read each generated file. Discuss with the class:
 - Are the acceptance criteria clear and testable?
 - Does the task list follow Red–Green–Refactor order?
 
-Request any changes from Cascade before moving on.
+Request any changes from Devin before moving on.
 
 ### Step 4 — Apply the Change
 
@@ -148,10 +150,10 @@ Request any changes from Cascade before moving on.
 Once satisfied with the artifacts, run in Cascade:
 
 ```
-/opsx-apply create-bug
+/openspec-apply-change create-bug
 ```
 
-Cascade will implement the feature — writing failing tests first, then making them pass, following the task list in `tasks.md`.
+Devin will implement the feature — writing failing tests first, then making them pass, following the task list in `tasks.md`.
 
 ### Step 5 — Verify and Demo
 
@@ -165,7 +167,7 @@ Cascade will implement the feature — writing failing tests first, then making 
    ```powershell
    npm test
    ```
-4. Discuss with the class: What did Cascade do well? What would you change?
+4. Discuss with the class: What did Devin do well? What would you change?
 
 ### Step 6 — Archive the Change
 
@@ -174,7 +176,7 @@ Cascade will implement the feature — writing failing tests first, then making 
 When the feature is complete and verified, archive it in Cascade:
 
 ```
-/opsx-archive create-bug
+/openspec-archive-change create-bug
 ```
 
 This moves the artifacts to `openspec/changes/archive/` to keep the workspace clean.
@@ -192,7 +194,7 @@ Split into small groups (2–3 people). Each group will complete the remaining f
 **Open a new Devin Cascade Session** to start with a fresh context window.
 
 ```
-/opsx-propose @initial-prompt.md list-bugs feature only
+/openspec-propose @initial-prompt.md list-bugs feature only
 ```
 
 **Step 2 — Review** the generated artifacts in `openspec/changes/list-bugs/`. Verify the spec covers:
@@ -205,7 +207,7 @@ Split into small groups (2–3 people). Each group will complete the remaining f
 **Open a new Devin Cascade Session** to start with a fresh context window.
 
 ```
-/opsx-apply list-bugs
+/openspec-apply-change list-bugs
 ```
 
 **Step 4 — Verify and Demo**
@@ -222,7 +224,7 @@ Open the browser and confirm the bug list renders correctly.
 **Open a new Devin Cascade Session** to start with a fresh context window.
 
 ```
-/opsx-archive list-bugs
+/openspec-archive-change list-bugs
 ```
 
 ---
@@ -234,7 +236,7 @@ Open the browser and confirm the bug list renders correctly.
 **Open a new Devin Cascade Session** to start with a fresh context window.
 
 ```
-/opsx-propose @initial-prompt.md triage-bug feature only
+/openspec-propose @initial-prompt.md triage-bug feature only
 ```
 
 **Step 2 — Review** the generated artifacts in `openspec/changes/triage-bug/`. Verify the spec covers:
@@ -246,7 +248,7 @@ Open the browser and confirm the bug list renders correctly.
 **Open a new Devin Cascade Session** to start with a fresh context window.
 
 ```
-/opsx-apply triage-bug
+/openspec-apply-change triage-bug
 ```
 
 **Step 4 — Verify and Demo**
@@ -260,10 +262,10 @@ Open the browser and demonstrate the triage workflow end-to-end.
 
 **Step 5 — Archive**
 
-**Open a new Devin Cascade Session** to start with a fresh context window.
+**Open a new Devin Desktop Session** to start with a fresh context window.
 
 ```
-/opsx-archive triage-bug
+/openspec-archive-change triage-bug
 ```
 
 ---
@@ -281,32 +283,29 @@ After completing the lab, discuss these questions with your group or the class:
 
 ## OpenSpec Slash Commands
 
+OpenSpec commands are now distributed as **Devin skills** (located in `.devin/skills/`). The legacy `.devin/workflows/` commands (`/opsx-*`) have been deprecated and no longer work in the Devin chat panel. Use the skill-based slash commands below instead.
+
 ### Core Commands
 | Command | Purpose |
 |---|---|
-| `/opsx:explore` | Think through ideas before committing to a change |
-| `/opsx:propose` | Create a change and generate planning artifacts in one step |
-| `/opsx:apply` | Implement tasks from the change |
-| `/opsx:archive` | Archive a completed change |
+| `/openspec-explore` | Think through ideas before committing to a change |
+| `/openspec-propose` | Create a change and generate planning artifacts in one step |
+| `/openspec-apply-change` | Implement tasks from the change |
+| `/openspec-archive-change` | Archive a completed change |
 
-### Expanded Workflow Commands (custom workflow selection)
+### Expanded Workflow Commands
 | Command | Purpose |
 |---|---|
-| `/opsx:new` | Start a new change scaffold |
-| `/opsx:continue` | Create the next artifact based on dependencies |
-| `/opsx:ff` | Fast-forward: create all planning artifacts at once |
-| `/opsx:verify` | Validate implementation matches artifacts |
-| `/opsx:sync` | Merge delta specs into main specs |
-| `/opsx:bulk-archive` | Archive multiple changes at once |
-| `/opsx:onboard` | Guided tutorial through the complete workflow |
+| `/openspec-verify-change` | Validate implementation matches artifacts |
+| `/openspec-sync-specs` | Merge delta specs into main specs |
 
 ---
 
-## Best Practice: Fresh Cascade Sessions for Each Agent Command
+## Best Practice: Fresh Devin Desktop Sessions for Each Agent Command
 
-It is recommended to **open a new Devin Cascade Session before running each agent command** (`/opsx-propose`, `/opsx-apply`, `/opsx-archive`, etc.). Here's why:
+It is recommended to **open a new Devin Desktop Session before running each agent command** (`/openspec-propose`, `/openspec-apply-change`, `/openspec-archive-change`, etc.). Here's why:
 
-- **Context Window Management**: Each Cascade session starts with a clean context window, preventing token accumulation from previous conversations that could limit the AI's ability to reason about the current task.
+- **Context Window Management**: Each Devin Desktop session starts with a clean context window, preventing token accumulation from previous conversations that could limit the AI's ability to reason about the current task.
 - **Reduced Hallucination**: A fresh context reduces the risk of the AI referencing or conflating details from prior features or changes.
 - **Clearer Focus**: Each session is dedicated to a single feature or change, making it easier to track what the AI is working on and verify correctness.
 - **Better Artifact Quality**: With a focused context, the generated specs, designs, and task lists are more precise and less likely to contain cross-feature contamination.
