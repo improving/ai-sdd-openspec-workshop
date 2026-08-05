@@ -107,10 +107,6 @@ operations:
       - Run focused tests before the full suite
       - Do not run `npm run dev` during the apply phase
       - Prefer small, focused diffs; keep each implementation change under ~30 lines when possible
-  archive:
-    guidance:
-      - Keep the completion summary concise
-      - Verify the spec and implementation are complete and aligned before archiving
 
 ```
 
