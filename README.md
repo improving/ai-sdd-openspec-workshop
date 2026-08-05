@@ -64,8 +64,8 @@ This scaffolds the `openspec/` directory structure and skills used by all subseq
 Open the `openspec/config.yaml` file and replace its contents with the following:
 
 ```yaml
+# openspec/config.yaml
 schema: spec-driven
-model: SWE 1.7
 
 context: |
   Domain: Bug Tracker web application — a demo POC for a workshop teaching Spec-Driven Development (SDD) using OpenSpec.
@@ -84,30 +84,39 @@ context: |
   Project conventions:
   - UI: one create form and one list view, minimal Tailwind styling, no extra dependencies.
   - Tests: backend endpoint tests with Supertest and frontend component tests with React Testing Library; run with `npm run test`.
+  - We value backwards compatibility for all public APIs.
+
+  Task conventions:
+  - Group tasks under `## N. Group Name` headings.
+  - Every task must be a checkbox in the form `- [ ] N.M Task description`.
+  - Each task must be small, focused, reference the relevant spec scenario, and sequence: tests → implementation → refactor.
+  - Check off tasks as you complete them one-by-one or a section at a time.
 
 rules:
-  default:
-    tasks:
-      - "Group tasks under `## N. Group Name` headings."
-      - "Every task must be a checkbox in the form `- [ ] N.M Task description`."
-      - "Each task must be small, focused, reference the relevant spec scenario, and sequence: tests → implementation → refactor."
-      - "Check off tasks as you complete them one-by-one or a section at a time."
-  swe-1.7:
-    propose:
-      - "If you are running on model SWE 1.7 do not add 'npm run dev' to the task list."
-    apply:
-      - "SWE 1.7: do not run 'npm run dev' during the apply phase."
-      - "SWE 1.7: prefer small, focused diffs; keep each implementation change under ~30 lines when possible."
-    archive:
-      - "SWE 1.7: verify the spec and implementation are complete and aligned before archiving."
-    tasks:
-      - "SWE 1.7: keep tasks concrete and avoid multi-file refactors in a single step."
+  proposal:
+    - Include rollback plan
+    - Identify affected teams
+    - If you are running on model SWE 1.7, do not add `npm run dev` to the task list
+  specs:
+    - Use Given/When/Then format
+    - Reference existing patterns before inventing new ones
+
+operations:
+  apply:
+    guidance:
+      - Run focused tests before the full suite
+      - Do not run `npm run dev` during the apply phase
+      - Prefer small, focused diffs; keep each implementation change under ~30 lines when possible
+  archive:
+    guidance:
+      - Keep the completion summary concise
+      - Verify the spec and implementation are complete and aligned before archiving
 
 ```
 
-### Why these SWE 1.7 rules matter
+### Why these model-specific guidance rules matter
 
-The `swe-1.7` rules are specifically tuned for the SWE 1.7 model, which is significantly cheaper than other models. The goal is to add precision and guardrails so the cheaper model stays reliable in this lab:
+These guidance rules are specifically tuned for the SWE 1.7 model, which is significantly cheaper than other models. The goal is to add precision and guardrails so the cheaper model stays reliable in this lab:
 
 - **No `npm run dev` in proposals and no `npm run dev` during apply** — prevents the Devin Desktop window from hanging.
 - **Small, focused diffs (~30 lines max per change)** — keeps each apply step minimal, reducing the amount of code and reasoning the model must handle at once.
