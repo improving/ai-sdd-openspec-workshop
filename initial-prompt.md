@@ -16,6 +16,12 @@ Create a small “Bug Tracker” web application as a demo POC for a workshop te
 
 ## Features
 
+### Visual Reference
+
+Use [`image.png`](./image.png) as the visual reference for the initial `create-bug` page. Match its overall layout, proportions, typography, spacing, controls, colors, and responsive behavior at approximately 1024×710px.
+
+The written requirements in this document are authoritative where they clarify or differ from the image. Do not embed the image in the application; it is provided for implementation and visual verification only.
+
 ### create-bug
 - Create a new bug with:
   - Title: required string, max 100 characters
