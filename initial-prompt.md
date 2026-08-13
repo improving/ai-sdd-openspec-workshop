@@ -24,6 +24,29 @@ Create a small “Bug Tracker” web application as a demo POC for a workshop te
   - Status: defaults to `New`
   - CreatedAt: timestamp set automatically
 - Validation: if Title is missing or exceeds 100 characters, show an error and do not create the bug.
+- The create-bug implementation must include the initial application shell and all greenfield scaffolding required to run the feature end-to-end.
+- The initial UI must reliably match the supplied Bug Tracker reference screenshot at approximately 1024×710px. Treat the screenshot as a visual acceptance reference, not merely inspiration.
+- Use a single white page with one centered content column approximately 510px wide on desktop, with approximately 85–95px of top spacing and 16–20px horizontal page padding on narrow screens.
+- Keep all content left-aligned within the column. Do not center the form fields or button text.
+- Render the exact visible hierarchy and order below:
+  1. Page heading: `Bug Tracker`
+  2. Section heading: `Create Bug`
+  3. Label and single-line text input: `Title`
+  4. Label and multiline textarea: `Description`
+  5. Label and native select: `Severity`
+  6. Compact left-aligned submit button: `Create Bug`
+  7. Section heading: `Bugs`
+  8. Empty state: `No bugs yet.`
+- Use a neutral sans-serif font, dark high-contrast headings, regular dark labels, and muted gray empty-state text.
+- Use approximate typography: page heading 28–32px bold; section headings 24px bold; labels 16px.
+- Inputs, textarea, and select must be full-width, white, lightly bordered, slightly rounded (approximately 4px), and comfortably padded. The textarea should be approximately 65px tall.
+- The Severity select must show `Select severity` when unset and offer exactly `P1`, `P2`, and `P3`.
+- The submit button must be compact rather than full-width, left-aligned, blue (similar to `#2563eb`), use white text, and have approximately 8px vertical and 18px horizontal padding.
+- Use approximately 12px between each label and its control, 20–24px between fields, 18px between the final field and button, and 38–45px before the `Bugs` heading.
+- The initial empty state must display exactly `No bugs yet.` in muted gray.
+- Do not add navigation, sidebars, cards, hero sections, gradients, illustrations, decorative icons, dashboards, tables, badges, avatars, charts, or extra routes unless explicitly requested.
+- The UI must remain usable on narrow screens: the content column must shrink fluidly, controls must not overflow, and the hierarchy must remain unchanged.
+- Before considering create-bug complete, compare the rendered page against the reference screenshot at approximately 1024×710px and verify the visual acceptance criteria above.
 
 ### list-bugs
 - Display all bugs sorted newest-first.
