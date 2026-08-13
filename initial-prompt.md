@@ -7,7 +7,8 @@ Create a small “Bug Tracker” web application as a demo POC for a workshop te
 - Backend: Node.js + Express + TypeScript
 - Storage: in-memory only (no database)
 - Tests: Vitest + Supertest for API tests
-- Runtime: `npm run dev` must start both frontend and backend concurrently
+- Runtime: `npm run dev` must start both frontend and backend concurrently.
+- Development API routing: the Vite dev server must proxy `/api/*` requests to the Express backend (for example, `http://localhost:3000`) so browser requests made from the frontend do not return a Vite 404.
 
 ## TDD Discipline (non-negotiable)
 - Follow Red–Green–Refactor.
@@ -30,6 +31,7 @@ The written requirements in this document are authoritative where they clarify o
   - Status: defaults to `New`
   - CreatedAt: timestamp set automatically
 - Validation: if Title is missing or exceeds 100 characters, show an error and do not create the bug.
+- Submission behavior: the form must submit to the API through the configured development proxy, handle non-2xx responses without assuming the response body is valid JSON, and show a user-visible error instead of throwing an uncaught promise or JSON parse error.
 - The create-bug implementation must include the initial application shell and all greenfield scaffolding required to run the feature end-to-end.
 - The initial UI must reliably match the supplied Bug Tracker reference screenshot at approximately 1024×710px. Treat the screenshot as a visual acceptance reference, not merely inspiration.
 - Use a single white page with one centered content column approximately 510px wide on desktop, with approximately 85–95px of top spacing and 16–20px horizontal page padding on narrow screens.
@@ -53,6 +55,7 @@ The written requirements in this document are authoritative where they clarify o
 - Do not add navigation, sidebars, cards, hero sections, gradients, illustrations, decorative icons, dashboards, tables, badges, avatars, charts, or extra routes unless explicitly requested.
 - The UI must remain usable on narrow screens: the content column must shrink fluidly, controls must not overflow, and the hierarchy must remain unchanged.
 - Before considering create-bug complete, compare the rendered page against the reference screenshot at approximately 1024×710px and verify the visual acceptance criteria above.
+- Before considering create-bug complete, verify from the running frontend that submitting a valid bug reaches the backend through the Vite proxy and returns a successful created bug response.
 
 ### list-bugs
 - Display all bugs sorted newest-first.
@@ -75,3 +78,4 @@ The written requirements in this document are authoritative where they clarify o
 - The user will request one feature at a time (e.g., `create-bug feature only, include greenfield scaffolding`).
 - Generate the OpenSpec proposal/spec/design/tasks artifacts for only the requested feature.
 - Do not re-scaffold or rewrite `LAB-README.md` unless the user explicitly asks for greenfield scaffolding.
+- When implementing the create form, include automated coverage for the development API path/proxy and for a failed or non-JSON response; the submit action must never produce an uncaught `Unexpected end of JSON input` error.
