@@ -24,38 +24,16 @@ Use [`image.png`](./image.png) as the visual reference for the initial `create-b
 The written requirements in this document are authoritative where they clarify or differ from the image. Do not embed the image in the application; it is provided for implementation and visual verification only.
 
 ### create-bug
-- Create a new bug with:
-  - Title: required string, max 100 characters
-  - Description: optional string
-  - Severity: optional, one of `P1`, `P2`, `P3`
-  - Status: defaults to `New`
-  - CreatedAt: timestamp set automatically
-- Validation: if Title is missing or exceeds 100 characters, show an error and do not create the bug.
-- Submission behavior: the form must submit to the API through the configured development proxy, handle non-2xx responses without assuming the response body is valid JSON, and show a user-visible error instead of throwing an uncaught promise or JSON parse error.
-- The create-bug implementation must include the initial application shell and all greenfield scaffolding required to run the feature end-to-end.
-- The initial UI must reliably match the supplied Bug Tracker reference screenshot at approximately 1024×710px. Treat the screenshot as a visual acceptance reference, not merely inspiration.
-- Use a single white page with one centered content column approximately 510px wide on desktop, with approximately 85–95px of top spacing and 16–20px horizontal page padding on narrow screens.
-- Keep all content left-aligned within the column. Do not center the form fields or button text.
-- Render the exact visible hierarchy and order below:
-  1. Page heading: `Bug Tracker`
-  2. Section heading: `Create Bug`
-  3. Label and single-line text input: `Title`
-  4. Label and multiline textarea: `Description`
-  5. Label and native select: `Severity`
-  6. Compact left-aligned submit button: `Create Bug`
-  7. Section heading: `Bugs`
-  8. Empty state: `No bugs yet.`
-- Use a neutral sans-serif font, dark high-contrast headings, regular dark labels, and muted gray empty-state text.
-- Use approximate typography: page heading 28–32px bold; section headings 24px bold; labels 16px.
-- Inputs, textarea, and select must be full-width, white, lightly bordered, slightly rounded (approximately 4px), and comfortably padded. The textarea should be approximately 65px tall.
-- The Severity select must show `Select severity` when unset and offer exactly `P1`, `P2`, and `P3`.
-- The submit button must be compact rather than full-width, left-aligned, blue (similar to `#2563eb`), use white text, and have approximately 8px vertical and 18px horizontal padding.
-- Use approximately 12px between each label and its control, 20–24px between fields, 18px between the final field and button, and 38–45px before the `Bugs` heading.
-- The initial empty state must display exactly `No bugs yet.` in muted gray.
-- Do not add navigation, sidebars, cards, hero sections, gradients, illustrations, decorative icons, dashboards, tables, badges, avatars, charts, or extra routes unless explicitly requested.
-- The UI must remain usable on narrow screens: the content column must shrink fluidly, controls must not overflow, and the hierarchy must remain unchanged.
-- Before considering create-bug complete, compare the rendered page against the reference screenshot at approximately 1024×710px and verify the visual acceptance criteria above.
-- Before considering create-bug complete, verify from the running frontend that submitting a valid bug reaches the backend through the Vite proxy and returns a successful created bug response.
+- Provide an end-to-end create-bug workflow with greenfield application scaffolding when this is the initial feature.
+- The workflow shall collect a required Title (nonblank, maximum 100 characters), optional Description, and optional Severity (`P1`, `P2`, or `P3`).
+- A valid submission shall create and persist a bug with the submitted fields, status `New`, and an automatically generated `CreatedAt` timestamp.
+- Invalid title input shall show a user-visible validation error and shall not create a bug.
+- The frontend shall submit through the configured Vite `/api/*` proxy and shall handle non-2xx, network, and non-JSON responses without uncaught or JSON parsing errors.
+- After successful creation, the user shall receive visible confirmation and the bug list shall reflect the created bug.
+- The create page shall match the supplied visual reference in hierarchy, responsive layout, typography, spacing, controls, colors, and empty-state presentation; the reference is an acceptance criterion, not inspiration.
+- The initial page shall contain one create form and one bug list with the visible headings `Bug Tracker`, `Create Bug`, and `Bugs`; an empty list shall display exactly `No bugs yet.`.
+- The page shall remain usable on narrow screens and shall not add navigation, extra routes, or unrelated UI elements.
+- Verify the workflow with frontend tests, backend API tests, visual comparison at approximately 1024×710px, and a running-browser submission through the Vite proxy.
 
 ### list-bugs
 - Display all bugs sorted newest-first.
@@ -66,8 +44,14 @@ The written requirements in this document are authoritative where they clarify o
   - CreatedAt
 
 ### triage-bug
-- Triage sets Severity to one of `P1`, `P2`, `P3` and transitions Status from `New` to `Triaged`.
-- Once a bug is `Triaged`, Severity cannot be changed again; reject such requests with a clear error.
+- Provide `POST /api/bugs/:id/triage`, accepting a severity of `P1`, `P2`, or `P3` and returning the updated bug.
+- A valid request shall assign the severity and transition a `New` bug to `Triaged`.
+- Missing bug IDs, missing or unsupported severities, and requests against an already-triaged bug shall return clear client errors without mutating the bug.
+- The bug list shall expose triage directly: each `New` bug shall provide inline severity selection and a Triage action that is unavailable until a supported severity is selected.
+- The frontend shall submit the selected severity and correct bug ID through the configured Vite proxy.
+- After success, the list shall show the server-authoritative severity and `Triaged` status; already-triaged bugs shall display their values without resubmission controls.
+- Triage failures, including network and non-JSON responses, shall be visible to the user while preserving the bug's displayed state.
+- Verify the feature with Supertest API tests, React Testing Library component tests, and running-browser confirmation of the complete list-to-triage workflow.
 
 ## Constraints and Non-Goals
 - No authentication, roles, persistence, edit, or delete operations.
@@ -79,3 +63,5 @@ The written requirements in this document are authoritative where they clarify o
 - Generate the OpenSpec proposal/spec/design/tasks artifacts for only the requested feature.
 - Do not re-scaffold or rewrite `LAB-README.md` unless the user explicitly asks for greenfield scaffolding.
 - When implementing the create form, include automated coverage for the development API path/proxy and for a failed or non-JSON response; the submit action must never produce an uncaught `Unexpected end of JSON input` error.
+- For every feature that adds or changes an API capability, inspect all existing frontend surfaces that consume the affected resource and include the required user interaction, component tests, and running-browser verification in the same feature scope unless the user explicitly declares the feature backend-only.
+- A feature is not complete when its backend tests pass alone: all specified user-facing behavior, API behavior, frontend behavior, and corresponding automated tests must be represented in the OpenSpec requirements and tasks.
