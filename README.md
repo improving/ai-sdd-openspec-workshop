@@ -126,7 +126,7 @@ These guidance rules are specifically tuned for the SWE 1.7 model, which is sign
 In the Devin chat panel, type the following slash command:
 
 ```
-/openspec-propose @initial-prompt.md plan and implement only the `create-bug` feature, and include all greenfield scaffolding required to run and verify it end-to-end. Greenfield scaffolding includes the React/Vite/Tailwind frontend, Express/TypeScript backend, in-memory storage, API tests, frontend tests, Vite development proxy and package/tooling configuration, plus the root `LAB-README.md`. Do not include `list-bugs` or `triage-bug` behavior in this change. Make sure that the UI closely matches @image.png
+/openspec-propose @initial-prompt.md plan and implement only the `create-bug` feature, and include all greenfield scaffolding required to run and verify it end-to-end. Greenfield scaffolding includes the React/Vite/Tailwind frontend, Express/TypeScript backend, in-memory storage, API tests, frontend tests, Vite development proxy and package/tooling configuration, plus the root `LAB-README.md`. Do not include `list-bugs` or `triage-bug` behavior in this change. Make sure that the UI closely matches @image.png if possible.
 ```
 
 Devin will generate the following artifacts inside `openspec/changes/create-bug/`:
