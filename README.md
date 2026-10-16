@@ -102,7 +102,6 @@ operations:
   apply:
     guidance:
       - Run focused tests before the full suite
-      - Do not run `npm run dev` during the apply phase
       - Prefer small, focused diffs; keep each implementation change under ~30 lines when possible
       - Check off tasks as you complete them one-by-one or a section at a time.
 
