@@ -96,7 +96,6 @@ rules:
   proposal:
     - Include rollback plan
     - Identify affected teams
-    - If you are running on model SWE 1.7, do not add `npm run dev` to the task list
   specs:
     - Use Given/When/Then format
     - Reference existing patterns before inventing new ones
@@ -109,15 +108,6 @@ operations:
       - Prefer small, focused diffs; keep each implementation change under ~30 lines when possible
 
 ```
-
-### Why these model-specific guidance rules matter
-
-These guidance rules are specifically tuned for the SWE 1.7 model, which is significantly cheaper than other models. The goal is to add precision and guardrails so the cheaper model stays reliable in this lab:
-
-- **No `npm run dev` in proposals and no `npm run dev` during apply** — prevents the Devin Desktop window from hanging.
-- **Small, focused diffs (~30 lines max per change)** — keeps each apply step minimal, reducing the amount of code and reasoning the model must handle at once.
-- **Concrete tasks, no multi-file refactors** — avoids the broad, sweeping rewrites that consume large context windows and can trigger rework.
-- **Verify before archiving** — ensures a single clean completion step rather than repeated back-and-forth corrections.
 
 ### Step 2 — Propose the "Create Bug" Feature
 
