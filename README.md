@@ -86,12 +86,6 @@ context: |
   - Tests: backend endpoint tests with Supertest and frontend component tests with React Testing Library; run with `npm run test`.
   - We value backwards compatibility for all public APIs.
 
-  Task conventions:
-  - Group tasks under `## N. Group Name` headings.
-  - Every task must be a checkbox in the form `- [ ] N.M Task description`.
-  - Each task must be small, focused, reference the relevant spec scenario, and sequence: tests → implementation → refactor.
-  - Check off tasks as you complete them one-by-one or a section at a time.
-
 rules:
   proposal:
     - Include rollback plan
@@ -99,6 +93,10 @@ rules:
   specs:
     - Use Given/When/Then format
     - Reference existing patterns before inventing new ones
+  tasks:
+    - Group tasks under `## N. Group Name` headings.
+    - Every task must be a checkbox in the form `- [ ] N.M Task description`.
+    - Each task must be small, focused, reference the relevant spec scenario, and sequence - tests → implementation → refactor.
 
 operations:
   apply:
@@ -106,6 +104,7 @@ operations:
       - Run focused tests before the full suite
       - Do not run `npm run dev` during the apply phase
       - Prefer small, focused diffs; keep each implementation change under ~30 lines when possible
+      - Check off tasks as you complete them one-by-one or a section at a time.
 
 ```
 
